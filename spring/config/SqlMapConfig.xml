@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+<mappers>
+     <!-- 通过resource扫描user.xml -->
+	<mapper resource="ip/ssm/dao/mapper/student.xml"/>
+    <!-- 扫描 cn.itcast.ssm.dao.mapper包下的mapper接口
+    如果使用spring与mybatis提供mapper扫描，此处不用配置 
+   
+	 <package name="ip.ssm.dao.mapper2" /> 
+	-->
+</mappers>
+
+</configuration>

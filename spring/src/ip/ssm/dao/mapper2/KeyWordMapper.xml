@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ip.ssm.dao.mapper2.KeyWordMapper">
+
+	<resultMap id="keyword" type="ip.ssm.po.KeyWord">
+		<id column="id"						property="id"				jdbcType="NUMERIC"/>
+		<result column="provinces"				property="provinces"			jdbcType="VARCHAR"/>
+		<result column="shieldKey"			property="shieldKey"			jdbcType="BLOB"/>
+		<result column="uploadKey"			    property="uploadKey"			jdbcType="VARCHAR"/>
+		<result column="replyKey"			    property="replyKey"			jdbcType="VARCHAR"/>
+		
+	</resultMap>
+	<sql id="table_name">keyword</sql>
+	
+	
+	<select id="findAllKeyWord" resultType="keyword">
+		select * from keyword
+	</select>
+	
+	<insert id="addKeyWord" parameterType="keyword" >
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO keyword VALUES(
+			NULL,
+			#{provinces},
+			#{shieldKey},
+			#{uploadKey},
+			#{replyKey}
+		)
+	</insert>
+	<insert id="addListKeyWord" parameterType="java.util.List" >
+		 INSERT INTO keyword
+	     VALUES 
+	     <foreach collection="list" index="index" item="item"  separator=",">
+			(NULL,#{item.provinces},#{item.shieldKey},#{item.uploadKey},#{item.replyKey})
+		</foreach>
+	
+	</insert>
+	
+	<delete id="deleteKeyWordById" parameterType="int">
+		delete from keyword where id=#{id}
+	</delete>
+	<select id="findKeyWordById" parameterType="int" resultType="keyword">
+		select * from keyword where id=#{id}
+	</select>
+	
+	<update id="updataKeyWord" parameterType="keyword">
+		update keyword
+		 <set>
+			 <if test="provinces!=null">
+			 	provinces=#{provinces},
+			 </if>
+			 <if test="shieldKey!=null">
+			 	shieldKey=#{shieldKey},
+			 </if>
+			 <if test="uploadKey!=null">
+			 	uploadKey=#{uploadKey},
+			 </if>
+			 <if test="replyKey!=null">
+			 	replyKey=#{replyKey},
+			 </if>
+		 </set>
+		 where id=#{id} 
+	</update>
+	
+	<select id="findKeyWordByProvinces" parameterType="String" resultType="keyword">
+		select * from keyword where provinces like "%"#{provinces}"%"
+	</select>
+	
+</mapper>

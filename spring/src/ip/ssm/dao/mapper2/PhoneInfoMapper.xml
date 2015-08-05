@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ip.ssm.dao.mapper2.PhoneInfoMapper">
+
+	
+	<insert id="addPhoneInfo" parameterType="phoneInfo" useGeneratedKeys="true"  keyProperty="id">
+		INSERT INTO phone_info VALUES(
+			NULL,
+			#{action},
+			#{imei},
+			#{imsi},
+			#{sc},
+			#{custom},
+			#{phver},
+			#{mocorver},
+			#{ct},
+			#{cause},
+			#{sn1},
+			#{sn2}
+		)
+	</insert>
+	
+	<select id="findPhoneInfoById" parameterType="int" resultType="phoneInfo">
+		select * from phone_info where id=#{id}
+	</select>
+</mapper>
