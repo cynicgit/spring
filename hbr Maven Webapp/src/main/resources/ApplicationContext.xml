@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="  
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+   <!-- 扫描包 -->
+   <context:component-scan base-package="ip.jk.serivce"/>
+   
+   <!-- 加载数据库配置文件 -->
+   <context:property-placeholder location="classpath:jdbc.properties"/>
+   
+   <!-- 数据源 -->
+   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+   		<property name="driverClass" value="${jdbc.driverClassName}"/>
+   		<property name="jdbcUrl" value="${jdbc.url}"/>
+   		<property name="user" value="${jdbc.username}"/>
+   		<property name="password" value="${jdbc.password}"/>
+   		<property name="maxPoolSize" value="${c3p0.pool.maxPoolSize}"/>
+   		<property name="minPoolSize" value="${c3p0.pool.minPoolSize}"/>
+   		<property name="initialPoolSize" value="${c3p0.pool.initialPoolSize}"/>
+   		<property name="acquireIncrement" value="${c3p0.pool.acquireIncrement}"/>
+   </bean>
+   
+   <!-- 配置session工厂 -->
+   <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+   		<property name="dataSource" ref="dataSource"/>
+   		<!-- 配置别名 -->
+   		<property name="typeAliasesPackage" value="ip.jk.domain"/>
+   		<property name="mapperLocations" value="classpath:/ip.jk.mapper.*Mapper.xml"></property>
+   </bean>
+   <!-- 自动扫描  无需配置sqlmapconfig.xml-->
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+  		<property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
+  		<property name="basePackage" value="ip.jk.mapper"/>
+  </bean> 
+  
+  
+   <!-- 声明式事务 -->
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+   		<property name="dataSource" ref="dataSource"/>
+   </bean>
+   <tx:annotation-driven transaction-manager="transactionManager"/>
+   
+</beans> 

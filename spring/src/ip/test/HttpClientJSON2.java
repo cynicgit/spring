@@ -20,26 +20,24 @@ public class HttpClientJSON2 {
 		// 创建默认的httpClient实例.  <!DOCTYPE></DOCTYPE>   
         CloseableHttpClient httpclient = HttpClients.createDefault();  
         // 创建httppost     
-        HttpPost httppost = new HttpPost("http://localhost:80/spring/httpclientJSON1.htm");  
+        HttpPost httppost = new HttpPost("http://192.168.1.12/comm/newc.action");  
         StringBuffer sb = new StringBuffer();
-        sb.append("sadasfsafdsfsafgsdgdsgsdgsdgsdgsgs");
+       // sb.append("sadasfsafdsfsafgsdgdsgsdgsdgsdgsgs");
         //httppost.addHeader("application/json", "text/json");
         try {  
         	PhoneInfo phoneInfo = new PhoneInfo();
         	phoneInfo.setAction("update");
         	phoneInfo.setImei("359190039985300");
-        	phoneInfo.setImsi("460002208792181");
+        	phoneInfo.setImsi("460002208792121");
         	phoneInfo.setSc("+8618868944527");
         	phoneInfo.setCustom("EDL");
         	phoneInfo.setPhver("a200");
         	phoneInfo.setMocorver("A200_SW.V02.02.FORME(ID_TEST_V01)");
         	phoneInfo.setCt("0");
         	phoneInfo.setCause("cycle");
-        	String s = "<!DOCTYPE>"+JSON.toJSON(phoneInfo).toString()+"</DOCTYPE>";
-        	sb.append(s);
-        	sb.append("sadasfsafdsfsafgsdgdsgsdgsdgsdgsgs");
+        	String s = "<JSON>"+JSON.toJSON(phoneInfo).toString()+"</JSON><DATA></DATA>";
         	System.out.println(sb.toString());
-        	StringEntity sEntity = new StringEntity(sb.toString(),"utf-8");//解决中文乱码问题     
+        	StringEntity sEntity = new StringEntity(s,"utf-8");//解决中文乱码问题     
         	sEntity.setContentEncoding("UTF-8");    
         	//sEntity.setContentType("application/json");    
         	httppost.setEntity(sEntity);

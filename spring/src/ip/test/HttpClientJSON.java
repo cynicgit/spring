@@ -20,7 +20,7 @@ public class HttpClientJSON {
 		// 创建默认的httpClient实例.     
         CloseableHttpClient httpclient = HttpClients.createDefault();  
         // 创建httppost     
-        HttpPost httppost = new HttpPost("http://localhost:80/spring/httpclientJSON.htm");  
+        HttpPost httppost = new HttpPost("http://localhost/comm/update.action");  
         httppost.addHeader("application/json", "text/json");
         try {  
         	PhoneInfo phoneInfo = new PhoneInfo();

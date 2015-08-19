@@ -27,7 +27,14 @@ public class Address {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(getAddressByPhoneNumber("+8618868944527"));
+		char s1 = (char)Integer.parseInt("160");
+		String[] s = getAddressByPhoneNumber("+8618868944527").split(String.valueOf(s1));
+		System.out.println(s[0]);
+//		char[] a = s.toCharArray();
+//		for(int i=0;i<a.length;i++){
+//			System.out.println((int)a[i]);
+//		}
+			
 	}
 
 	
