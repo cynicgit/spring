@@ -26,25 +26,20 @@
 	<url-pattern>*.action</url-pattern>
   </servlet-mapping>
   
-  <!-- 表单提交乱码解决 -->
-    <filter>  
-	  <filter-name>characterEncodingFilter</filter-name>  
-	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
-	  <init-param>  
-	   <param-name>encoding</param-name>  
-	   <param-value>UTF-8</param-value>  
-	  </init-param>  
-	  <init-param>  
-	   <param-name>forceEncoding</param-name>  
-	   <param-value>true</param-value>  
-	  </init-param>  
-  </filter>  
-  <filter-mapping>  
-	  <filter-name>characterEncodingFilter</filter-name>  
-	  <url-pattern>/*</url-pattern>  
-  </filter-mapping>   
-  
-  
+
+  <!-- 编码过滤器，解决中文乱码 -->
+	<filter>
+		<filter-name>SpringEncoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SpringEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

@@ -17,7 +17,7 @@ public class Contract {
 	private String checkBy;
 	private String inspector;
 	private float totalAmount;
-	private int importNum;
+	private Integer importNum;
 	private String crequest;
 	private String customName;
 	private Date deliveryPeriod;
@@ -25,9 +25,9 @@ public class Contract {
 	private String tradeTerms;
 	private String remark;
 	private String printStyle;
-	private int oldState;
-	private int state;
-	private int outState;
+	private Integer oldState;
+	private Integer state;
+	private Integer outState;
 	private String createBy;
 	private String createDept;
 	private Date createTime;
@@ -96,11 +96,11 @@ public class Contract {
 		this.totalAmount = totalAmount;
 	}
 
-	public int getImportNum() {
+	public Integer getImportNum() {
 		return importNum;
 	}
 
-	public void setImportNum(int importNum) {
+	public void setImportNum(Integer importNum) {
 		this.importNum = importNum;
 	}
 
@@ -160,27 +160,27 @@ public class Contract {
 		this.printStyle = printStyle;
 	}
 
-	public int getOldState() {
+	public Integer getOldState() {
 		return oldState;
 	}
 
-	public void setOldState(int oldState) {
+	public void setOldState(Integer oldState) {
 		this.oldState = oldState;
 	}
 
-	public int getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 
-	public int getOutState() {
+	public Integer getOutState() {
 		return outState;
 	}
 
-	public void setOutState(int outState) {
+	public void setOutState(Integer outState) {
 		this.outState = outState;
 	}
 

@@ -19,7 +19,8 @@
 <li id="new"><a href="#" onclick="formSubmit('tocreate.action','_self');this.blur();">新增</a></li>
 <li id="update"><a href="#" onclick="formSubmit('toupdate.action','_self');this.blur();">修改</a></li>
 <li id="delete"><a href="#" onclick="formSubmit('delete.action','_self');this.blur();">删除</a></li>
-
+<li id="update"><a href="#" onclick="formSubmit('submit.action','_self');this.blur();">上报</a></li>
+<li id="update"><a href="#" onclick="formSubmit('cancel.action','_self');this.blur();">取消</a></li>
  
 </ul>
   </div>
@@ -60,7 +61,7 @@
 	</thead>
 	<tbody class="tableBody" >
 	
-	<c:forEach items="${dataList}" var="o" varStatus="status">
+	<c:forEach items="${clist}" var="o" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td><input type="checkbox" name="id" value="${o.id}"/></td>
 		<td>${status.index+1}</td>
@@ -74,8 +75,8 @@
 		<td>${o.checkBy}</td>
 		<td>${o.totalAmount}</td>
 		<td>
-			<c:if test="${o.state==0}">草稿</c:if>
-			<c:if test="${o.state==1}"><font color="orange">已上报</font></c:if>
+			<c:if test="${o.state==0}"><a href="submit.action?id=${o.id }">草稿</a></c:if>
+			<c:if test="${o.state==1}"><a href="cancel.action?id=${o.id }"><font color="orange">已上报</font></a></c:if>
 		</td>
 	</tr>
 	</c:forEach>

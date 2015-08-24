@@ -111,5 +111,12 @@
 		</foreach>
 	</delete>
 	
+	<update id="updateState" parameterType="hashMap">
+		update CONTRACT_C set state=#{state}
+		where CONTRACT_ID in
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</update>
 	
 </mapper>
